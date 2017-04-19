@@ -26,7 +26,7 @@ object Folding {
       * and adds them together. Resulting in the sum of both integers.
       *
       * @param n Int
-      * @return Int
+      * @return (Int => Int)
       */
     def addSome(n : Int) = (y : Int) => {
         n + y

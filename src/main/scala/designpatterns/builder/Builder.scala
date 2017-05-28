@@ -6,12 +6,14 @@ object Builder {
         println("--- Builder ---")
 
         val director = new VehicleBuilderDirector
+        val carBuilder = new CarBuilder
+        val vanBuilder = new VanBuilder
 
         println("Build car")
-        director.buildCar
+        director.build(carBuilder)
 
         println("\nBuild van")
-        director.buildVan
+        director.build(vanBuilder)
     }
 }
 
@@ -51,19 +53,9 @@ class VanBuilder extends VehicleBuilder {
 
 class VehicleBuilderDirector extends BuilderDirector {
 
-     def buildCar: Unit = {
-         val carBuilder = new CarBuilder
-
-         carBuilder.buildMilePerGallon()
-         carBuilder.buildNoOfDoors()
-         carBuilder.buildWeight()
+     def build(builder : VehicleBuilder): Unit = {
+         builder.buildMilePerGallon()
+         builder.buildNoOfDoors()
+         builder.buildWeight()
      }
-
-    def buildVan: Unit = {
-        val vanBuilder = new VanBuilder
-
-        vanBuilder.buildMilePerGallon()
-        vanBuilder.buildNoOfDoors()
-        vanBuilder.buildWeight()
-    }
 }

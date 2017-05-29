@@ -1,6 +1,6 @@
 package main.scala.constraints.contravariant
 
-object Contravarient {
+object Contravariant {
 
     def main(args : Array[String]) {
 
@@ -13,13 +13,13 @@ object Contravarient {
             printer.print(myCat)
         }
 
-        val dogPrinter : Printer[Dog] = new DogPrinter
+        val animalPrinter : Printer[Animal] = new AnimalPrinter
         val catPrinter : Printer[Cat] = new CatPrinter
 
         printAnimal(catPrinter)
 
         // For some reason this doesn't work even though the scala docs said it will :(
-//        printAnimal(dogPrinter)
+        printAnimal(animalPrinter)
     }
 }
 
@@ -27,9 +27,9 @@ abstract class Printer[-A] {
     def print(item : A)
 }
 
-class DogPrinter extends Printer[Dog] {
-    def print(item : Dog): Unit = {
-        println("I'm a dog named " + item.name)
+class AnimalPrinter extends Printer[Animal] {
+    def print(item : Animal): Unit = {
+        println("I'm an animal named " + item.name)
     }
 }
 
@@ -39,5 +39,8 @@ class CatPrinter extends Printer[Cat] {
     }
 }
 
-case class Dog(name : String)
-case class Cat(name : String)
+abstract class Animal {
+    def name : String
+}
+case class Dog(name : String) extends Animal
+case class Cat(name : String) extends Animal
